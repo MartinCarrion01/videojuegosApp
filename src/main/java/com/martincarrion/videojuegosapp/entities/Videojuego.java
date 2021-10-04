@@ -18,7 +18,7 @@ import java.util.Date;
 public class Videojuego {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -44,11 +44,11 @@ public class Videojuego {
     @Column(name = "activo")
     private Boolean activo = true;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "estudio_ID", nullable = false)
     private Estudio estudio;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categoria_ID", nullable = false)
     private Categoria categoria;
 
