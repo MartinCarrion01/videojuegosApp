@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -35,6 +36,18 @@ public class VideojuegoController {
             Videojuego videojuego = this.videojuegoService.findByIdAndActivo(id);
             model.addAttribute("videojuego", videojuego);
             return "views/detalle";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+
+    @GetMapping("/busqueda")
+    public String busquedaVideojuego(Model model, @RequestParam(value = "query", required = false) String q) {
+        try {
+            List<Videojuego> videojuegos = this.videojuegoService.findByTitle(q);
+            model.addAttribute("videojuegos", videojuegos);
+            return "views/busqueda";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "error";

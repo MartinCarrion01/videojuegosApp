@@ -100,4 +100,14 @@ public class VideojuegoService implements BaseService<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
+
+    @Transactional
+    public List<Videojuego> findByTitle(String q) throws Exception {
+        try {
+            List<Videojuego> entities = this.videojuegoRepository.findByTitle(q);
+            return entities;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }
