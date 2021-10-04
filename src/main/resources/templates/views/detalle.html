@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Detalle videojuego</title>
     <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -40,24 +40,36 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card-deck mt-5">
-                <div class="card" th:each="videojuego: ${videojuegos}">
-                    <img
-                            th:src="${videojuego.imagen}"
-                            class="card-img-top"
-                            alt="imagen de videojuego"
-                    />
-                    <div class="card-body">
-                        <h5 th:text="${videojuego.titulo}">Título</h5>
-                        <p class="card-text">
-                            Precio <span th:text="${videojuego.precio}">1</span>
-                        </p>
-                        <a th:href="@{detalle/{id}(id=${videojuego.id})}" class="btn btn-primary">Ver detalle</a>
-                    </div>
+    <div class="row mt-5" th:object="${videojuego}">
+        <div class="col-4">
+            <img
+                    th:src="*{imagen}"
+                    th:alt="imagen de *{titulo}"
+                    class="img-fluid"
+            />
+        </div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 th:text="*{titulo}">Título</h5>
+                    <p class="card-text">
+                        Precio: <span th:text="*{precio}">1</span>
+                    </p>
+                    <p class="card-text" th:if="*{stock}">
+                        Cantidad: <span th:text="*{stock}"></span>
+                    </p>
+                    <p class="card-text" th:unless="*{stock}">
+                        <span class="text-danger">No hay stock</span>
+                    </p>
+                </div>
+                <hr/>
+                <div class="card-body">
+                    <p class="card-text" th:text="*{descripcion}"></p>
                 </div>
             </div>
+        </div>
+        <div class="col-12">
+            <a th:href="@{/inicio}" class="btn btn-outline-dark mt-5">Volver</a>
         </div>
     </div>
 </div>

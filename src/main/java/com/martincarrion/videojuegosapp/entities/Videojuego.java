@@ -35,7 +35,7 @@ public class Videojuego {
     private Double precio;
 
     @Column(name = "stock")
-    private Boolean stock;
+    private short stock;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_lanzamiento")
