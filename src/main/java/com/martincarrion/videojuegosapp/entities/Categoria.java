@@ -18,8 +18,8 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "id")
+    private long id;
 
     @Column(name = "nombre")
     private String nombre;

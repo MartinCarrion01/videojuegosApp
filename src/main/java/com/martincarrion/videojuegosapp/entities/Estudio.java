@@ -18,14 +18,14 @@ public class Estudio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "id")
+    private long id;
 
     @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "activo")
-    private Boolean activo;
+    private Boolean activo = true;
 
     @OneToMany(mappedBy = "estudio")
     private List<Videojuego> videojuegos;

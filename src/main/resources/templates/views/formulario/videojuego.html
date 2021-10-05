@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body">
                     <form th:action="@{/formulario/videojuego/{id}(id=${videojuego.id})}" method="post"
-                          th:object="${videojuego}" enctype="multipart/form-data">
+                          th:object="${videojuego}">
                         <div class="row g-3">
                             <div class="form-group col-md-6">
                                 <label for="titulo">Titulo:</label>

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,7 +21,7 @@ public class Videojuego {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "titulo")
     private String titulo;
@@ -32,12 +33,12 @@ public class Videojuego {
     private String imagen;
 
     @Column(name = "precio")
-    private Double precio;
+    private float precio;
 
     @Column(name = "stock")
     private short stock;
 
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_lanzamiento")
     private Date fechaLanzamiento;
 

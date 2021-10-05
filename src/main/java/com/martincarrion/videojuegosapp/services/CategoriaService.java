@@ -29,7 +29,7 @@ public class CategoriaService implements BaseService<Categoria> {
 
     @Override
     @Transactional
-    public Categoria findById(Long id) throws Exception {
+    public Categoria findById(long id) throws Exception {
         try {
             Optional<Categoria> entityOptional = categoriaRepository.findById(id);
             return entityOptional.get();
@@ -42,8 +42,8 @@ public class CategoriaService implements BaseService<Categoria> {
     @Transactional
     public Categoria save(Categoria entity) throws Exception {
         try {
-            entity = categoriaRepository.save(entity);
-            return entity;
+            Categoria categoria = categoriaRepository.save(entity);
+            return categoria;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -51,7 +51,7 @@ public class CategoriaService implements BaseService<Categoria> {
 
     @Override
     @Transactional
-    public Categoria update(Long id, Categoria entity) throws Exception {
+    public Categoria update(long id, Categoria entity) throws Exception {
         try {
             Optional<Categoria> entityOptional = categoriaRepository.findById(id);
             Categoria categoria = entityOptional.get();
@@ -64,7 +64,7 @@ public class CategoriaService implements BaseService<Categoria> {
 
     @Override
     @Transactional
-    public boolean delete(Long id) throws Exception {
+    public boolean delete(long id) throws Exception {
         try {
             Optional<Categoria> entityOptional = categoriaRepository.findById(id);
             if (!entityOptional.isEmpty()) {

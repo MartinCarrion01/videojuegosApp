@@ -2,6 +2,7 @@ package com.martincarrion.videojuegosapp.services;
 
 import com.martincarrion.videojuegosapp.entities.Videojuego;
 import com.martincarrion.videojuegosapp.repositories.VideojuegoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,11 +12,9 @@ import java.util.Optional;
 @Service
 public class VideojuegoService implements BaseService<Videojuego> {
 
+    @Autowired
     private VideojuegoRepository videojuegoRepository;
 
-    public VideojuegoService(VideojuegoRepository a) {
-        this.videojuegoRepository = a;
-    }
 
     @Override
     @Transactional
@@ -30,7 +29,7 @@ public class VideojuegoService implements BaseService<Videojuego> {
 
     @Override
     @Transactional
-    public Videojuego findById(Long id) throws Exception {
+    public Videojuego findById(long id) throws Exception {
         try {
             Optional<Videojuego> entityOptional = videojuegoRepository.findById(id);
             return entityOptional.get();
@@ -43,8 +42,8 @@ public class VideojuegoService implements BaseService<Videojuego> {
     @Transactional
     public Videojuego save(Videojuego entity) throws Exception {
         try {
-            entity = videojuegoRepository.save(entity);
-            return entity;
+            Videojuego videojuego = videojuegoRepository.save(entity);
+            return videojuego;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -52,7 +51,7 @@ public class VideojuegoService implements BaseService<Videojuego> {
 
     @Override
     @Transactional
-    public Videojuego update(Long id, Videojuego entity) throws Exception {
+    public Videojuego update(long id, Videojuego entity) throws Exception {
         try {
             Optional<Videojuego> entityOptional = videojuegoRepository.findById(id);
             Videojuego videojuego = entityOptional.get();
@@ -65,7 +64,7 @@ public class VideojuegoService implements BaseService<Videojuego> {
 
     @Override
     @Transactional
-    public boolean delete(Long id) throws Exception {
+    public boolean delete(long id) throws Exception {
         try {
             Optional<Videojuego> entityOptional = videojuegoRepository.findById(id);
             if (!entityOptional.isEmpty()) {
@@ -92,7 +91,7 @@ public class VideojuegoService implements BaseService<Videojuego> {
     }
 
     @Transactional
-    public Videojuego findByIdAndActivo(Long id) throws Exception {
+    public Videojuego findByIdAndActivo(long id) throws Exception {
         try {
             Optional<Videojuego> optional = videojuegoRepository.findByIdAndActivo(id);
             return optional.get();
