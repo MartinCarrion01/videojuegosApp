@@ -30,7 +30,7 @@ public class EstudioService implements BaseService<Estudio> {
 
     @Override
     @Transactional
-    public Estudio findById(Long id) throws Exception {
+    public Estudio findById(long id) throws Exception {
         try {
             Optional<Estudio> entityOptional = estudioRepository.findById(id);
             return entityOptional.get();
@@ -43,8 +43,8 @@ public class EstudioService implements BaseService<Estudio> {
     @Transactional
     public Estudio save(Estudio entity) throws Exception {
         try {
-            entity = estudioRepository.save(entity);
-            return entity;
+            Estudio estudio = estudioRepository.save(entity);
+            return estudio;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -52,7 +52,7 @@ public class EstudioService implements BaseService<Estudio> {
 
     @Override
     @Transactional
-    public Estudio update(Long id, Estudio entity) throws Exception {
+    public Estudio update(long id, Estudio entity) throws Exception {
         try {
             Optional<Estudio> entityOptional = estudioRepository.findById(id);
             Estudio estudio = entityOptional.get();
@@ -65,7 +65,7 @@ public class EstudioService implements BaseService<Estudio> {
 
     @Override
     @Transactional
-    public boolean delete(Long id) throws Exception {
+    public boolean delete(long id) throws Exception {
         try {
             Optional<Estudio> entityOptional = estudioRepository.findById(id);
             if (!entityOptional.isEmpty()) {
